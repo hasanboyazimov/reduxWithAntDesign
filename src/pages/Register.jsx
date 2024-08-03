@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
 import { Button, Checkbox, Form, Grid, Input, theme, Typography } from "antd";
 
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
 const { Text, Title } = Typography;
 
-export default function Login() {
+export default function Register() {
   const { token } = useToken();
   const screens = useBreakpoint();
 
@@ -107,6 +107,22 @@ export default function Login() {
             ]}
           >
             <Input
+              prefix={<UserOutlined />}
+              placeholder="Name"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Item>
+          <Form.Item
+            name="display"
+            rules={[
+              {
+                type: "text",
+                required: true,
+                message: "Please input your full name!",
+              },
+            ]}
+          >
+            <Input
               prefix={<MailOutlined />}
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
@@ -138,11 +154,11 @@ export default function Login() {
           </Form.Item>
           <Form.Item style={{ marginBottom: "0px" }}>
             <Button block="true" type="primary" htmlType="submit">
-              Log in
+              Register
             </Button>
             <div style={styles.footer}>
-              <Text style={styles.text}>Don't have an account?</Text>{" "}
-              <Link to="/register">Register now</Link>
+              <Text style={styles.text}>If have an account?</Text>{" "}
+              <Link to="/login">Login now</Link>
             </div>
           </Form.Item>
         </Form>

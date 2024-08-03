@@ -15,6 +15,7 @@ import { Navigate } from "react-router-dom";
 
 //pages
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const App = () => {
   const { user } = useSelector((state) => state.user);
@@ -44,7 +45,7 @@ const App = () => {
     },
     {
       path: "register",
-      element: user ? <Navigate to="/" /> : <h1>Register</h1>,
+      element: user ? <Navigate to="/" /> : <Register />,
     },
   ]);
 
