@@ -10,7 +10,10 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 const { Text, Title } = Typography;
 
+import { useRegister } from "../hooks/useRegister";
+
 export default function Register() {
+  const { registerWithEmailAndPassword } = useRegister();
   const { token } = useToken();
   const screens = useBreakpoint();
 
@@ -18,7 +21,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    registerWithEmailAndPassword(values);
   };
 
   const styles = {
@@ -81,10 +84,10 @@ export default function Register() {
             />
           </svg>
 
-          <Title style={styles.title}>Sign in</Title>
+          <Title style={styles.title}>Register</Title>
           <Text style={styles.text}>
             Welcome back to AntBlocks UI! Please enter your details below to
-            sign in.
+            register.
           </Text>
         </div>
         <Form
@@ -107,24 +110,24 @@ export default function Register() {
             ]}
           >
             <Input
-              prefix={<UserOutlined />}
-              placeholder="Name"
+              prefix={<MailOutlined />}
+              placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Item>
           <Form.Item
-            name="display"
+            name="displayName"
             rules={[
               {
                 type: "text",
                 required: true,
-                message: "Please input your full name!",
+                message: "Please input your full Name!",
               },
             ]}
           >
             <Input
-              prefix={<MailOutlined />}
-              placeholder="Email"
+              prefix={<UserOutlined />}
+              placeholder="Name"
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Item>

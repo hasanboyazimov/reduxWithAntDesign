@@ -81,10 +81,10 @@ export default function Login() {
             />
           </svg>
 
-          <Title style={styles.title}>Sign in</Title>
+          <Title style={styles.title}>Login</Title>
           <Text style={styles.text}>
             Welcome back to AntBlocks UI! Please enter your details below to
-            sign in.
+            login.
           </Text>
         </div>
         <Form
