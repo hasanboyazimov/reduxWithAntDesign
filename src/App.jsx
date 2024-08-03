@@ -8,10 +8,18 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 //layout
 import MainLayout from "./layout/MainLayout";
 
-const App = () => {
-  const user = false;
+//react-redux
+import { useSelector } from "react-redux";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-  const routes = createBrowerRouter([
+//pages
+import Login from "./pages/Login";
+
+const App = () => {
+  const { user } = useSelector((state) => state.user);
+
+  const routes = createBrowserRouter([
     {
       path: "/",
       element: (
@@ -32,13 +40,15 @@ const App = () => {
     },
     {
       path: "login",
-      element: user ? <Navigate to="/" /> : <h1>Login</h1>,
+      element: user ? <Navigate to="/" /> : <Login />,
     },
     {
       path: "register",
       element: user ? <Navigate to="/" /> : <h1>Register</h1>,
     },
   ]);
+
+  return <RouterProvider router={routes} />;
 };
 
-export default App
+export default App;

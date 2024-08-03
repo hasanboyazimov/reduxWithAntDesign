@@ -1,7 +1,14 @@
+import Navbar from "../components/Navbar";
+
 function MainLayout() {
   return (
-    <div>MainLayout</div>
-  )
+    <>
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
 }
 
-export default MainLayout
+export default MainLayout;
