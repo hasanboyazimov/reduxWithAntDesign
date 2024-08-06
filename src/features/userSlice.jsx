@@ -1,6 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-const checkUserLogin = createAsyncThunk("user/isAuthReady");
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
@@ -12,15 +10,18 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, { payload }) => {
-      state.user = payload
+      state.user = payload;
+      state.isAuthReady = true;
     },
     logout: (state) => {
-      state.user = null
+      state.user = null;
     },
-    isAuthReadyChange: (state) => {},
+    isAuthReadyChange: (state) => {
+      state.isAuthReady;
+    },
   },
 });
 
 export const { login, logout, isAuthReadyChange } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;

@@ -10,6 +10,7 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 const { Text, Title } = Typography;
 
+//hooks
 import { useRegister } from "../hooks/useRegister";
 
 export default function Register() {

@@ -19,12 +19,12 @@ function useRegister() {
         displayName: userInfo.displayName,
       });
 
-      const user = userCredential.user;
+      const user = (await userCredential).user;
       displatch(login(user));
       toast.success("Welcome " + user.displayName);
     } catch (error) {
       const errorMessage = error.message;
-      console.log(error)
+      console.log(error);
       toast.error(errorMessage);
     }
   };

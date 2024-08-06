@@ -2,6 +2,10 @@
 import Home from "./pages/Home";
 import About from "./pages/About";
 
+//firebase
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebaseConfig";
+
 //components
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
@@ -9,17 +13,19 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import MainLayout from "./layout/MainLayout";
 
 //react-redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 //pages
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { isAuthReadyChange, login } from "./features/userSlice";
+import { useEffect } from "react";
 
 const App = () => {
-  const { user } = useSelector((state) => state.user);
-
+  const { user, isAuthReady } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -49,7 +55,14 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={routes} />;
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      dispatch(login(user));
+      dispatch(isAuthReadyChange());
+    });
+  }, []);
+
+  return <> {isAuthReady && <RouterProvider router={routes} />}</>;
 };
 
 export default App;

@@ -10,7 +10,11 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 const { Text, Title } = Typography;
 
+//hooks
+import { useLogin } from "../hooks/useLogin";
+
 export default function Login() {
+  const { loginWithEmailAndPassword } = useLogin();
   const { token } = useToken();
   const screens = useBreakpoint();
 
@@ -18,7 +22,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    loginWithEmailAndPassword(values);
   };
 
   const styles = {
