@@ -14,7 +14,10 @@ function ProductsList() {
   }, []);
 
   return (
-    <div>
+    <div
+      className="container"
+      style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginTop: '50px' }}
+    >
       <div>
         {all &&
           all?.map((product) => {

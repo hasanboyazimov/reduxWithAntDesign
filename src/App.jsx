@@ -25,7 +25,9 @@ import { useEffect } from "react";
 
 const App = () => {
   const { user, isAuthReady } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+
+  console.log(user, isAuthReady);
+
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -55,14 +57,14 @@ const App = () => {
     },
   ]);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      dispatch(login(user));
-      dispatch(isAuthReadyChange());
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     dispatch(login(user));
+  //     dispatch(isAuthReadyChange());
+  //   });
+  // }, []);
 
-  return <> {isAuthReady && <RouterProvider router={routes} />}</>;
+  return <> {<RouterProvider router={routes} />}</>;
 };
 
 export default App;

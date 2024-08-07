@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Card, Space, Button } from "antd";
+import { Image } from "antd";
 
 function SingleCard({ product }) {
   const dispatch = useDispatch();
@@ -19,13 +20,12 @@ function SingleCard({ product }) {
       <Card
         title={product.name}
         extra={<a href="#">More</a>}
-        style={{ width: 300 }}
+        style={{ width: "300px", height: "550px", marginBottom: "25px" }}
       >
+        <Image src={product.thumbnail} />
         <p>{product.description}</p>
         <p>Price: ${product.price}</p>
-        <p>
-          Quantity: {product.amount ? product.amount : 0}
-        </p>
+        <p>Quantity: {product.amount ? product.amount : 0}</p>
         {/* <Button onClick={handleIncrement}>Add</Button> */}
         {addButtons && (
           <>

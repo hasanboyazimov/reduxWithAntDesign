@@ -4,7 +4,11 @@ import {
   MailOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
+import { logout } from "../features/userSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const items = [
   {
     label: "Navigation One",
@@ -15,28 +19,47 @@ const items = [
     label: "Navigation Two",
     key: "app",
     icon: <AppstoreOutlined />,
-    // disabled: true,
   },
   {
     label: "Navigation Three",
     key: "setting",
     icon: <SettingOutlined />,
-    // disabled: true,
   },
 ];
-const App = () => {
+const Navbar = () => {
   const [current, setCurrent] = useState("mail");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login')
+  };
+
   const onClick = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
   };
+
   return (
-    <Menu
-      onClick={onClick}
-      selectedKeys={[current]}
-      mode="horizontal"
-      items={items}
-    />
+    <>
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={items}
+      />
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <div></div>
+        <Button onClick={handleLogout} style={{ marginTop: "10px", marginRight: "10px"}}>Log Out</Button>
+      </div>
+    </>
   );
 };
-export default App;
+export default Navbar;

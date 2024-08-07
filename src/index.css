@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.container {
+  max-width: 1240px;
+  margin: auto;
+  
+}
+
 /* Navbar */
 
 .navbar {
